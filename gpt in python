@@ -1,0 +1,27 @@
+# Install the OpenAI library
+# pip install openai
+
+import openai
+import os
+
+# Make sure to set the environment variable OPENAI_API_KEY before running this script
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Verify that the API key is set
+if openai.api_key is None:
+    raise ValueError("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable.")
+
+
+response = openai.Completion.create(
+    engine="text-davinci-003",
+    prompt="Question here",
+    max_tokens=60
+)
+
+
+print(response.choices[0].text.strip())
+
+#additional tutorial how to set the Environment Variable:
+1. open Cmd
+2. run:
+       setx OPENAI_API_KEY "your-api-key"
